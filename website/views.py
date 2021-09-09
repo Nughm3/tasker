@@ -7,7 +7,10 @@ views = Blueprint("views", __name__)
 def home():
     return "<h1>Home</h1>"
 
+@views.route("/tasks/")
+def tasks():
+    return "<h1>Tasks</h1>"
 
-@views.route("/startpage")
+@views.route("/startpage/")
 def startpage():
     return "<h1>Startpage</h1>"
