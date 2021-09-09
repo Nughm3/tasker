@@ -4,19 +4,19 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/static/register.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/static/auth.css" media="screen">
         <title>Register | Tasker</title>
     </head>
     <body>
         <div class="container">
-            <h1 class="icon-tasker">Tasker</h1>
+            <h1 class="icon-tasker">Register</h1>
             <p>Welcome to Tasker! Register here:</p>
             <form action="/tasks" method="POST">
-                <div><input type="text" name="Username" placeholder="userid"></div>
-                <div><input type="password" name="Password" placeholder="password"></div>
-                <div><input type="submit" name="Submit" placeholder="icon-login"></div>
+                <div><input type="text" name="Username" placeholder="Username"></div>
+                <div><input type="password" name="Password" placeholder="Password"></div>
+                <div><input type="submit" name="Submit" placeholder="icon-login" value="Submit"></div>
                 <div><hr></div>
-                <div class="small">Already have an account? <a href="/auth/login">Log in!</a></div>
+                <div class="small">Already have an account? <a href="/account/login">Log in!</a></div>
             </form>
         </div>
     </body>

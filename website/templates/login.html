@@ -4,19 +4,19 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/static/login.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/static/auth.css" media="screen">
         <title>Log in | Tasker</title>
     </head>
     <body>
         <div class="container">
-            <h1 class="icon-tasker">Tasker</h1>
+            <h1 class="icon-tasker">Log In</h1>
             <p>Please log in to continue</p>
-            <form action="/login" method="POST">
-                <div><input type="text" name="Username" placeholder="userid"></div>
-                <div><input type="password" name="Password" placeholder="password"></div>
-                <div><input type="submit" name="Submit" placeholder="icon-login"></div>
+            <form action="/tasks" method="POST">
+                <div><input type="text" name="Username" placeholder="Username"></div>
+                <div><input type="password" name="Password" placeholder="Password"></div>
+                <div><input type="submit" name="Submit" placeholder="icon-login" value="Submit"></div>
                 <div><hr></div>
-                <div class="small">No account? <a href="/auth/register">Sign up!</a></div>
+                <div class="small">No account? <a href="/account/register">Sign up!</a></div>
             </form>
         </div>
     </body>

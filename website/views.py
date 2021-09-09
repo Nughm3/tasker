@@ -11,8 +11,3 @@ def home():
 @views.route("/tasks/")
 def tasks():
     return render_template("tasks.html")
-
-
-@views.route("/dash/")
-def dash():
-    return render_template("dash.html")
