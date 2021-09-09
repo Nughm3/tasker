@@ -1,2 +1,0 @@
-- add basic task tracking functionality
-- add ability to use tasker as a browser start page
