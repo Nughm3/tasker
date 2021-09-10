@@ -5,36 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/tasks.css" media="screen">
-    <title>Task List | Tasker</title>
+    <title>Task List</title>
 </head>
 <body>
     <div class="pageheader">
         <div class="titlebar"><strong>Good {{ greeting }}, {{ user.name }}</strong></div>
-        <button class="settings">Settings</button>
-        <button class="logout">Log out</button>
     </div>
 
     <div class="container">
         <div class="folders">
-            <div class="header">Folders</div>
-            <button class="newfolder">New</button>
+            <div class="header"><strong>Folders</strong>
+                <button class="blue">New</button>
+            </div>
             {% for folder in folders %}
-                <div class="folder">{{ folder }}</div>
+                <a class="folder" href="?folderid={{ folder.id }}">{{ folder.name }}</a>
             {% endfor %}
+            <div class="controls">
+                <button class="red">Log out</button>
+                <button class="green">Settings</button>
+            </div>
         </div>
 
         <div class="tasks">
-            <div class="header">Tasks</div>
-            <button class="newtask">New</button>
-            <button class="cleartasks">Mark all as done</button>
+            <div class="header"><strong>Tasks</strong>
+                <button class="green">New</button>
+                <button class="red">Mark all as done</button>
+            </div>
             {% for task in tasks %}
-                <div class="task">
-                    <div class="task"><strong>[{{ task.folder }}] {{ task.name }}</strong></div>
-                    <div class="task">{{ task.description }}</div>
-                    <div class="task">{{ task.due_date }}</div>
-                    <!-- And folders will be sorted out later -->
-                </div>
+                <a class="taskpreview" href="?folderid={{ task.folder }}&id={{ task.id }}">
+                    <div class="taskpreviewheader">[{{ task.id+1 }}] {{ task.title }}</div>
+                    <div class="taskpreviewtext">{{ task.summary }}</div>
+                    <div class="taskpreviewtime">{{ task.due_date }}</div>
+                </a>
             {% endfor %}
+        </div>
+
+        <div class="main">
+            <form method="POST" enctype="multipart/form-data" action="/save_task">
+                <div class="maintitle"><input type="text" name="title" value="{{ maintask.title }}" placeholder="Task title" class="tasktitle"></div>
+                <div class="two-columns">
+                    <div><label for="due">Due</label></div>
+                    <input type="date" name="due" value="{{ maintask.due }}" placeholder="">
+                    <div><label for="status">Status</label></div>
+                    <select name="status" value="{{ maintask.status }}">
+                        <option {{ "selected='selected'" if maintask.status == "Unstarted" else "" }}>Unstarted</option>
+                        <option {{ "selected='selected'" if maintask.status == "In progress" else "" }}>In progress</option>
+                        <option {{ "selected='selected'" if maintask.status == "Waiting on response" else "" }}>Waiting on response</option>
+                    </select>
+                </div>
+                <div class="maintext">
+                    <textarea name="notes">{{ maintask.notes }}</textarea>
+                </div>
+                <input type="hidden" name="id" value="{{ maintask.id }}">
+                <input type="hidden" name="folderid" value="{{ folderid }}">
+                <input type="hidden" name="userid" value="{{ user.userid }}">
+                <input type="submit" name="submit-save" class="blue icon-save" value="Save">
+                <input type="submit" name="submit-close" class="green icon-complete" value="Mark as complete">
+                <input type="submit" name="submit-delete" class="red icon-delete" value="Delete">
+            </form>
         </div>
     </div>
 </body>

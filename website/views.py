@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from .tasker import greet, Task
+from .tasker import greet
 
 views = Blueprint("views", __name__)
 
@@ -12,12 +12,25 @@ def home():
 @views.route("/tasks/")
 def tasks():
     user = {
-            "name": "ToxicFscyther",
-            "username": "toxicfs",
+        "name": "ToxicFscyther",
+        "username": "toxicfs",
     }
-    folders = ["CS", "Math"]
+    folders = ["CS", "Maths"]
     tasks = [
-        Task("Specimen", "Start Reactor", "30 seconds from now", "CS"),
-        Task("Admin", "Swipe Card", "2 seconds from now", "Math"),
+        {
+            "id": 0,
+            "folder": 0,
+            "title": "CS HW",
+            "summary": "Finish coding rooms",
+            "due_date": "11/09/2021",
+            "notes": "This time it's about lists!"
+        },
     ]
-    return render_template("tasks.html", greeting=greet(), user=user, folders=folders, tasks=tasks)
+
+    return render_template(
+            "tasks.html",
+            greeting=greet(),
+            user=user,
+            folders=[{"id": folders.index(name), "name": name} for name in folders],
+            tasks=tasks,
+    )

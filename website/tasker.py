@@ -10,10 +10,3 @@ def greet() -> str:
     else: greeting = "night"
     
     return greeting
-
-class Task():
-    def __init__(self, name, info, date, folder) -> None:
-        self.name = name
-        self.description = info
-        self.due_date = date
-        self.folder = folder
