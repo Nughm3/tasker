@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template
-from .tasker import greet
 
 views = Blueprint("views", __name__)
 
@@ -29,7 +28,6 @@ def tasks():
 
     return render_template(
             "tasks.html",
-            greeting=greet(),
             user=user,
             folders=[{"id": folders.index(name), "name": name} for name in folders],
             tasks=tasks,
