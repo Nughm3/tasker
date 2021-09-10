@@ -8,6 +8,34 @@
     <title>Task List | Tasker</title>
 </head>
 <body>
-    
+    <div class="pageheader">
+        <div class="titlebar"><strong>Good {{ greeting }}, {{ user.name }}</strong></div>
+        <button class="settings">Settings</button>
+        <button class="logout">Log out</button>
+    </div>
+
+    <div class="container">
+        <div class="folders">
+            <div class="header">Folders</div>
+            <button class="newfolder">New</button>
+            {% for folder in folders %}
+                <div class="folder">{{ folder }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="tasks">
+            <div class="header">Tasks</div>
+            <button class="newtask">New</button>
+            <button class="cleartasks">Mark all as done</button>
+            {% for task in tasks %}
+                <div class="task">
+                    <div class="task"><strong>[{{ task.folder }}] {{ task.name }}</strong></div>
+                    <div class="task">{{ task.description }}</div>
+                    <div class="task">{{ task.due_date }}</div>
+                    <!-- And folders will be sorted out later -->
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>
