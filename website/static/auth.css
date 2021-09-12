@@ -4,7 +4,7 @@ body, html {
     height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
-    background-color: #545862;
+    background-color: #f0f0f0;
 }
 
 /* LOGIN BOX */
@@ -13,7 +13,7 @@ body, html {
     padding: 100px;
     border: 0px;
     border-radius: 10px;
-    color: #e5c07b;
+    color: #61afef;
     background-color: #282c34;
 }
 
@@ -25,12 +25,10 @@ input {
     border-radius: 2px;
     border: 2px;
     background-color: #353b45;
-    color: #e5c07b;
+    color: #61afef;
 }
 
 input[type='submit'] {
-    background-color: #353b45;
-    color: #e5c07b;
     padding: 5px 10px 5px 10px;
     margin: 5px 0px 5px 0px;
     border-radius: 5px;
@@ -42,7 +40,7 @@ input[type='submit'] {
 
 input[type='submit']:hover {
     background-color: #3e4451;
-    color: #f7e18c;
+    color: #82cfff;
     padding: 5px 10px 5px 10px;
     margin: 5px 0px 5px 0px;
     border-radius: 5px;
@@ -52,20 +50,38 @@ input[type='submit']:hover {
     height: 2em;
 }
 
+.container .flash-err {
+    padding: 2px 5px 2px 5px;
+    background-color: #282c34;
+    color: #e06c75;
+    font-weight: bold;
+    border: 2px solid #e06c75;
+    border-radius: 7px;
+}
+
+.container .flash-ok {
+    padding: 2px 5px 2px 5px;
+    background-color: #282c34;
+    color: #98c379;
+    font-weight: bold;
+    border: 2px solid #98c379;
+    border-radius: 7px;
+}
+
 /* MISC */
 .small {
     font-size: small;
 }
 
 a:link {
-    color: #e5c07b;
+    color: #61afef;
 }
 a:visited {
-    color: #e5c07b;
+    color: #61afef;
 }
 a:hover {
-    color: #f7e18c;
+    color: #82cfff;
 }
 a:active {
-    color: #f7e18c;
+    color: #82cfff;
 }

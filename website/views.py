@@ -22,13 +22,13 @@ def tasks():
             "title": "CS HW",
             "summary": "Finish coding rooms",
             "due_date": "11/09/2021",
-            "notes": "This time it's about lists!"
+            "notes": "This time it's about lists!",
         },
     ]
 
     return render_template(
-            "tasks.html",
-            user=user,
-            folders=[{"id": folders.index(name), "name": name} for name in folders],
-            tasks=tasks,
+        "tasks.html",
+        user=user,
+        folders=[{"id": folders.index(name), "name": name} for name in folders],
+        tasks=tasks,
     )

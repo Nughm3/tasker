@@ -48,7 +48,7 @@
                     <input type="date" name="due" value="{{ maintask.due }}" placeholder="">
                     <div><label for="status">Status</label></div>
                     <select name="status" value="{{ maintask.status }}">
-                        <option {{ "selected='selected'" if maintask.status == "Unstarted" else "" }}>Unstarted</option>
+                        <option {{ "selected='selected'" if maintask.status == "Unstarted" else "" }}>Not started</option>
                         <option {{ "selected='selected'" if maintask.status == "In progress" else "" }}>In progress</option>
                         <option {{ "selected='selected'" if maintask.status == "Waiting on response" else "" }}>Waiting on response</option>
                     </select>
