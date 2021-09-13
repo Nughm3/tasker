@@ -23,7 +23,7 @@ def register():
             elif len(username) < 3:
                 flash("Username too short!", category="error")
             elif len(password) < 8:
-                flash("Password too short!", catergory="error")
+                flash("Password too short!", category="error")
             else:
                 flash("Account created!", category="success")
         else:
