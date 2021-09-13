@@ -18,8 +18,12 @@ def register():
         password = request.form.get("Password")
 
         if username != None and password != None:
-            if len(username) < 3 or len(password) < 3:
-                flash("Account details too short", category="error")
+            if len(username) < 3 and len(password) < 8:
+                flash("Account details too short!", category="error")
+            elif len(username) < 3:
+                flash("Username too short!", category="error")
+            elif len(password) < 8:
+                flash("Password too short!", catergory="error")
             else:
                 flash("Account created!", category="success")
         else:
