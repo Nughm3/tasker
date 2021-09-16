@@ -40,30 +40,6 @@
             {% endfor %}
         </div>
 
-        <div class="main">
-            <form method="POST" enctype="multipart/form-data" action="/save_task">
-                <div class="maintitle"><input type="text" name="title" value="{{ maintask.title }}" placeholder="Task title" class="tasktitle"></div>
-                <div class="two-columns">
-                    <div><label for="due">Due</label></div>
-                    <input type="date" name="due" value="{{ maintask.due }}" placeholder="">
-                    <div><label for="status">Status</label></div>
-                    <select name="status" value="{{ maintask.status }}">
-                        <option {{ "selected='selected'" if maintask.status == "Unstarted" else "" }}>Not started</option>
-                        <option {{ "selected='selected'" if maintask.status == "In progress" else "" }}>In progress</option>
-                        <option {{ "selected='selected'" if maintask.status == "Waiting on response" else "" }}>Waiting on response</option>
-                    </select>
-                </div>
-                <div class="maintext">
-                    <textarea name="notes">{{ maintask.notes }}</textarea>
-                </div>
-                <input type="hidden" name="id" value="{{ maintask.id }}">
-                <input type="hidden" name="folderid" value="{{ folderid }}">
-                <input type="hidden" name="userid" value="{{ user.userid }}">
-                <input type="submit" name="submit-save" class="blue icon-save" value="Save">
-                <input type="submit" name="submit-close" class="green icon-complete" value="Mark as complete">
-                <input type="submit" name="submit-delete" class="red icon-delete" value="Delete">
-            </form>
-        </div>
     </div>
 </body>
 </html>
