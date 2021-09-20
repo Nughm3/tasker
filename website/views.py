@@ -3,7 +3,9 @@ from datetime import datetime
 
 views = Blueprint("views", __name__)
 
-current_date = datetime.strptime(datetime.now(), "%d-%m-%Y")
+def due_date():
+    current_date = datetime.strftime(datetime.now(), "%d-%m-%Y")
+    duedate = 0
 
 @views.route("/")
 def home():
