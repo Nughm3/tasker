@@ -24,7 +24,7 @@ def tasks():
             "title": "CS To Do List",
             "summary": "Do homework",
             "current_date": current_date,
-            "due_date": "Your Mom",
+            "due_date": "11/09/23",
             "notes": "This time it's about lists!",
         },
     ]
