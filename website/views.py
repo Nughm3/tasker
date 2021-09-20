@@ -11,16 +11,16 @@ def home():
 @views.route("/tasks/")
 def tasks():
     user = {
-        "name": "ToxicFscyther",
-        "username": "toxicfs",
+        "name": "aaden",
+        "username": "Nughm",
     }
     folders = ["CS", "Maths"]
     tasks = [
         {
             "id": 0,
             "folder": 0,
-            "title": "Sweat life",
-            "summary": "Do CS",
+            "title": "Frick Woman",
+            "summary": "Get a life",
             "due_date": "11/09/2021",
             "notes": "This time it's about lists!",
         },
