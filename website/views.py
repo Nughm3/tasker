@@ -36,4 +36,14 @@ def tasks():
         user=user,
         folders=[{"id": folders.index(name), "name": name} for name in folders],
         tasks=tasks,
+        maintask = {
+            "id": 123,
+            "category": 0,
+            "priority": 1,
+            "status": 0,
+            "title": "test",
+            "due": "23-23-2323",
+            "reminder": 2,
+            "created": "34-34-34",
+        }
     )
