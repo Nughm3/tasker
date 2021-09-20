@@ -19,8 +19,8 @@ def tasks():
         {
             "id": 0,
             "folder": 0,
-            "title": "CS HW",
-            "summary": "Finish coding rooms",
+            "title": "Sweat life",
+            "summary": "Do CS",
             "due_date": "11/09/2021",
             "notes": "This time it's about lists!",
         },
