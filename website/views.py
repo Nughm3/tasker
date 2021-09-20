@@ -21,7 +21,7 @@ def tasks():
             "folder": 0,
             "title": "Frick Woman",
             "summary": "Get a life",
-            "due_date": "11/09/2021",
+            "due_date": "69/69/6969",
             "notes": "This time it's about lists!",
         },
     ]
