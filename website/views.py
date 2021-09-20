@@ -6,6 +6,7 @@ views = Blueprint("views", __name__)
 def due_date():
     current_date = datetime.strftime(datetime.now(), "%d-%m-%Y")
     duedate = 0
+    return current_date
 
 @views.route("/")
 def home():
@@ -25,7 +26,7 @@ def tasks():
             "folder": 0,
             "title": "CS To Do List",
             "summary": "Do homework",
-            "current_date": current_date,
+            "current_date": due_date(),
             "due_date": "11/09/23",
             "notes": "This time it's about lists!",
         },
