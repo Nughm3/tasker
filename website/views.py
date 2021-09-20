@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template
+from datetime import datetime
 
 views = Blueprint("views", __name__)
 
+current_date = datetime.strptime(datetime.now(), "%d-%m-%Y")
 
 @views.route("/")
 def home():
@@ -11,17 +13,18 @@ def home():
 @views.route("/tasks/")
 def tasks():
     user = {
-        "name": "aaden",
-        "username": "Nughm",
+        "name": "Fscyther",
+        "username":"Isaac Hung",
     }
     folders = ["CS", "Maths"]
     tasks = [
         {
             "id": 0,
             "folder": 0,
-            "title": "Frick Woman",
-            "summary": "Get a life",
-            "due_date": "69/69/6969",
+            "title": "CS To Do List",
+            "summary": "Do homework",
+            "current_date": current_date,
+            "due_date": "11/09/23",
             "notes": "This time it's about lists!",
         },
     ]
