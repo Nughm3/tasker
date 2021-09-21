@@ -1,18 +1,51 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from os import path
+import sqlite3
 
-db = SQLAlchemy()
-DB_NAME = "tasker.db"
+# Database
+database_filename = "tasker.db"
 
+def database_write(sql, data=None):
+    connection = sqlite3.connect(database_filename)
+    connection.row_factory = sqlite3.Row
+    db = connection.cursor()
+
+    # If the data exists, write it, if not, don't
+    if data:
+        rows_affected = db.execute(sql, data).rowcount
+    else:
+        rows_affected = db.execute(sql).rowcount
+
+    # Close the connections
+    connection.commit()
+    db.close()
+    connection.close()
+
+    return rows_affected
+
+def database_read(sql, data=None):
+    connection = sqlite3.connect(database_filename)
+    connection.row_factory = sqlite3.Row
+    db = connection.cursor()
+
+    # If the data exists, read it, if not, don't
+    if data:
+        db.execute(sql, data)
+    else:
+        db.execute(sql)
+
+    records = db.fetchall()
+    rows = [dict(record) for record in records]
+
+    # Close the connections
+    connection.commit()
+    db.close()
+    connection.close()
+
+    return rows
 
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = "asdf"
-    app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_NAME}"
-    db.init_app(app)
-
-    from .models import User, Folder, Task
 
     from .views import views
     from .auth import auth
@@ -21,9 +54,3 @@ def create_app():
     app.register_blueprint(auth, url_prefix="/account")
 
     return app
-
-
-def create_database(app):
-    if not path.exists(f"website/{DB_NAME}"):
-        db.create_all(app=app)
-        print("Database created")

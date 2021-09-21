@@ -15,7 +15,7 @@
     <div class="container">
         <div class="folders">
             <div class="header"><strong>Folders</strong>
-                <button class="blue">New</button>
+                <button class="blue" id="new-folder-button">New</button>
             </div>
             {% for folder in folders %}
                 <a class="folder" href="?folderid={{ folder.id }}">{{ folder.name }}</a>
@@ -28,12 +28,12 @@
 
         <div class="tasks">
             <div class="header"><strong>Tasks</strong>
-                <button class="green">New</button>
+                <button class="green" id="new-task-button">New</button>
                 <button class="red">Mark all as done</button>
             </div>
             {% for task in tasks %}
                 <a class="taskpreview" href="?folderid={{ task.folder }}&id={{ task.id }}">
-                    <div class="taskpreviewheader">[{{ task.id+1 }}] {{ task.title }}</div>
+                    <div class="taskpreviewheader">{{ task.title }}</div>
                     <div class="taskpreviewtext">{{ task.summary }}</div>
                     <div class="taskpreviewtime">{{ task.due_date }}</div>
                 </a>
@@ -75,13 +75,14 @@
                 <input type="hidden" name="id" value="{{ maintask.id }}">
                 <input type="hidden" name="folderid" value="{{ folderid }}">
                 <input type="hidden" name="userid" value="{{ user.userid }}">
-                <input type="submit" name="submit-save" class="blue icon-save" value="Save update">
-                <input type="submit" name="submit-close" class="green icon-complete" value="Complete & close">
-                <input type="submit" name="submit-delete" class="red icon-delete" value="Cancel & delete">
-                <input type="button" name="button-share" class="gray icon-share" value=" ">
-                <input type="button" name="button-print" class="gray icon-print" value=" ">
+                <input type="submit" name="submit-save" class="blue" value="Save update">
+                <input type="submit" name="submit-close" class="green" value="Complete & close">
+                <input type="submit" name="submit-delete" class="red" value="Cancel & delete">
+                <input type="button" name="button-share" class="gray" value=" ">
+                <input type="button" name="button-print" class="gray" value=" ">
             </form>
         </div>
     </div>
+    <script type="text/javascript" src="/static/main.js"></script>
 </body>
 </html>
