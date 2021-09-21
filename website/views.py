@@ -11,7 +11,7 @@ def home():
 @views.route("/tasks/")
 def tasks():
     if "folderid" in request.values:
-        folderid = request.values["folderid"]
+        folderid = int(request.values["folderid"])
     else:
         folderid = 0
 
@@ -31,6 +31,7 @@ def tasks():
         "tasks.html",
         user = user,
         folders = folders,
+        folderid = folderid,
         tasks = tasks,
         maintask = {
             "id": 123,

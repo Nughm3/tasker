@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/tasks.css" media="screen">
-    <title>Task List</title>
+    <title>Tasks</title>
 </head>
 <body>
     <div class="pageheader">
@@ -27,18 +27,24 @@
         </div>
 
         <div class="tasks">
-            <div class="header"><strong>Tasks</strong>
+            <div class="header"><strong>{{ folders[folderid]["name"] }}</strong>
                 <button class="green" id="new-task-button">New</button>
                 <button class="red">Mark all as done</button>
             </div>
             {% for task in tasks %}
-                <a class="taskpreview" href="?folderid={{ task.folder }}&id={{ task.id }}">
+                <a class="taskpreview" href="?folderid={{ task.folderid }}&id={{ task.id }}">
                     <div class="taskpreviewheader">{{ task.title }}</div>
                     <div class="taskpreviewtext">{{ task.notes }}</div>
                     <div class="taskpreviewcategory">{{ task.category }}</div>
                     <div class="taskpreviewfooter">
-                        <div class="taskpreviewstatus">[{{ task.status }}]</div>
-                        <div class="taskpreviewtime">Created {{ task.created }}, due {{ task.due }}</div>
+                        {% if task.status == "Unstarted" %}
+                            <div class="unstarted">[{{ task.status }}]</div>
+                        {% elif task.status == "In progress" %}
+                            <div class="started">[{{ task.status }}]</div>
+                        {% else %}
+                            <div class="waiting">[{{ task.status }}]</div>
+                        {% endif %}
+                        <div class="time">Created {{ task.created }}, due {{ task.due }}</div>
                     </div>
                 </a>
             {% endfor %}
