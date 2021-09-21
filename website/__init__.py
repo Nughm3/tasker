@@ -4,6 +4,7 @@ import sqlite3
 # Database
 database_filename = "tasker.db"
 
+
 def database_write(sql, data=None):
     connection = sqlite3.connect(database_filename)
     connection.row_factory = sqlite3.Row
@@ -21,6 +22,7 @@ def database_write(sql, data=None):
     connection.close()
 
     return rows_affected
+
 
 def database_read(sql, data=None):
     connection = sqlite3.connect(database_filename)
@@ -42,6 +44,7 @@ def database_read(sql, data=None):
     connection.close()
 
     return rows
+
 
 def create_app():
     app = Flask(__name__)

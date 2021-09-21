@@ -4,10 +4,12 @@ from . import database_read, database_write
 
 views = Blueprint("views", __name__)
 
+
 def due_date():
     current_date = datetime.strftime(datetime.now(), "%d-%m-%Y")
     duedate = 0
     return current_date
+
 
 @views.route("/")
 def home():
@@ -18,7 +20,7 @@ def home():
 def tasks():
     user = {
         "name": "toxicfs",
-        "username":"toxicfs",
+        "username": "toxicfs",
     }
     folders = database_read("SELECT * FROM folders ORDER BY name;")
     tasks = database_read("SELECT * FROM tasks ORDER BY title;")
@@ -40,7 +42,7 @@ def tasks():
         user=user,
         folders=[{"id": folders.index(name), "name": name["name"]} for name in folders],
         tasks=tasks,
-        maintask = {
+        maintask={
             "id": 123,
             "category": 0,
             "priority": 1,
@@ -49,5 +51,5 @@ def tasks():
             "due": "23-23-2323",
             "reminder": 2,
             "created": "34-34-3434",
-        }
+        },
     )
