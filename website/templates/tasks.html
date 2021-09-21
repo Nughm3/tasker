@@ -34,8 +34,12 @@
             {% for task in tasks %}
                 <a class="taskpreview" href="?folderid={{ task.folder }}&id={{ task.id }}">
                     <div class="taskpreviewheader">{{ task.title }}</div>
-                    <div class="taskpreviewtext">{{ task.summary }}</div>
-                    <div class="taskpreviewtime">{{ task.due_date }}</div>
+                    <div class="taskpreviewtext">{{ task.notes }}</div>
+                    <div class="taskpreviewcategory">{{ task.category }}</div>
+                    <div class="taskpreviewfooter">
+                        <div class="taskpreviewstatus">[{{ task.status }}]</div>
+                        <div class="taskpreviewtime">Created {{ task.created }}, due {{ task.due }}</div>
+                    </div>
                 </a>
             {% endfor %}
         </div>

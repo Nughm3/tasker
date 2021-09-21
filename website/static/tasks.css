@@ -35,7 +35,7 @@ html, body {
 .pageheader {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: #1e222a;
+    background-color: #282c34;
 }
 
 .pageheader .titlebar {
@@ -55,7 +55,7 @@ html, body {
 
 .folders { 
     grid-area: folders; 
-    background-color: #282c34;
+    background-color: #1e222a;
     border-right: 0px;
     overflow-y: auto;
     padding-bottom: 5em;
@@ -123,19 +123,30 @@ html, body {
 
 .taskpreviewheader {
     font-weight: bold;
-}
-
-.taskpreviewheader .folder {
-    color: #61afef;
+    color: #282c34;
 }
 
 .taskpreviewtext {
+    color: #353b45;
+}
+
+.taskpreviewcategory {
+    font-style: italic;
     color: #777;
 }
 
-.taskpreviewtime {
-    font-size: small;
+.taskpreviewfooter {
+    display: flex;
     color: blue;
+}
+
+.taskpreviewfooter .taskpreviewstatus {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.taskpreviewfooter .taskpreviewtime {
+    flex: 1;
 }
 .highlight {
     background-color: rgba(254, 243, 199,1);

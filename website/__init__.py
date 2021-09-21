@@ -5,26 +5,7 @@ import sqlite3
 database_filename = "tasker.db"
 
 
-def database_write(sql, data=None):
-    connection = sqlite3.connect(database_filename)
-    connection.row_factory = sqlite3.Row
-    db = connection.cursor()
-
-    # If the data exists, write it, if not, don't
-    if data:
-        rows_affected = db.execute(sql, data).rowcount
-    else:
-        rows_affected = db.execute(sql).rowcount
-
-    # Close the connections
-    connection.commit()
-    db.close()
-    connection.close()
-
-    return rows_affected
-
-
-def database_read(sql, data=None):
+def db_read(sql, data=None):
     connection = sqlite3.connect(database_filename)
     connection.row_factory = sqlite3.Row
     db = connection.cursor()
@@ -44,6 +25,25 @@ def database_read(sql, data=None):
     connection.close()
 
     return rows
+
+
+def db_write(sql, data=None):
+    connection = sqlite3.connect(database_filename)
+    connection.row_factory = sqlite3.Row
+    db = connection.cursor()
+
+    # If the data exists, write it, if not, don't
+    if data:
+        rows_affected = db.execute(sql, data).rowcount
+    else:
+        rows_affected = db.execute(sql).rowcount
+
+    # Close the connections
+    connection.commit()
+    db.close()
+    connection.close()
+
+    return rows_affected
 
 
 def create_app():
