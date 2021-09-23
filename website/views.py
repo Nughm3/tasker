@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 from . import db_read, db_write
+from uuid import uuid1 as uuid
 
 views = Blueprint("views", __name__)
 
@@ -8,12 +9,17 @@ views = Blueprint("views", __name__)
 def home():
     return render_template("home.html")
 
+
 @views.route("/tasks/")
 def tasks():
     if "folderid" in request.values:
         folderid = int(request.values["folderid"])
     else:
         folderid = 0
+    if "id" in request.values:
+        id = request.values["id"]
+    else:
+        id = 0
 
     user = {
         "name": "Aaden",
@@ -23,24 +29,73 @@ def tasks():
     # users can't be implemented here yet until login system is done
 
     folders = db_read("SELECT * FROM folders ORDER BY name;")
-    tasks = db_read(f"SELECT * FROM tasks WHERE folderid='{folderid}' ORDER BY title;")
+    tasks = db_read(
+        f"SELECT * FROM tasks WHERE folderid='{folderid}' AND status != 'Completed' ORDER BY title;"
+    )
+    maintask = db_read(f"SELECT * FROM tasks WHERE id='{id}';")[0]
 
     folders = [{"id": folders.index(name), "name": name["name"]} for name in folders]
 
     return render_template(
         "tasks.html",
-        user = user,
-        folders = folders,
-        folderid = folderid,
-        tasks = tasks,
-        maintask = {
-            "id": 123,
-            "category": 0,
-            "priority": 1,
-            "status": 0,
-            "title": "test",
-            "due": "23/23/2323",
-            "reminder": 2,
-            "created": "34/34/3434",
-        },
+        user=user,
+        folders=folders,
+        folderid=folderid,
+        tasks=tasks,
+        maintask=maintask,
     )
+
+
+@views.route("/error")
+def error():
+    return "<h1>There was an error</h1><a href='/tasks/'>Back to tasks page</a>"
+
+
+@views.route("/save_task", methods=["POST"])
+def save_task():
+    form = dict(request.values)
+    id = form["id"]
+    folderid = form["folderid"]
+    if "submit-close" in form:
+        form["status"] = "Completed"
+        return redirect(f"/tasks/?folderid={folderid}")
+    elif "submit-delete" in form:
+        db_write(f"DELETE FROM tasks WHERE id='{id}';")
+        return redirect(f"/tasks/?folderid={folderid}")
+
+    form["link"] = ""
+    if id == "":
+        id = str(uuid())
+        write = db_write(
+            "INSERT INTO tasks (title, due, reminder, category, priority, status, notes, link) VALUES (:title, :due, :reminder, :category, :priority, :status, :notes, :link);",
+            form,
+        )
+    else:
+        write = db_write(
+            "UPDATE tasks SET title=:title, due=:due, reminder=:reminder, category=:category, priority=:priority, status=:status, notes=:notes, link=:link",
+            form,
+        )
+
+    if write == 1:
+        return redirect(f"/tasks/?folderid={folderid}&id={id}")
+    else:
+        return redirect("/error")
+
+
+@views.route("/new_folder", methods=["POST"])
+def new_folder():
+    form = dict(request.values)
+    id = str(uuid())
+    form["id"] = id
+    write = db_write(
+        "INSERT INTO folders (userid, id, name) VALUES (:userid, :id, :name);", form
+    )
+    if write == 1:
+        return "Ok"
+    else:
+        return "Err"
+
+@views.route("/archive/")
+def archive():
+    archived_tasks = db_read("SELECT * FROM tasks WHERE status == 'Completed' ORDER BY title;")
+    return "WIP"

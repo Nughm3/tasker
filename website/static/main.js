@@ -13,9 +13,22 @@ function newtask(event) {
     document.querySelector("[name='id']").value = "";
 }
 
-// function newfolder(event) {
-//     
-// }
+function newfolder(event) {
+    let name = prompt("New folder:");
+    let userid = document.querySelector("[name='userid']").value;
+    if (name.length > 0) {
+        let f = new FormData;
+        f.append("userid", userid);
+        f.append("name", name);
+        fetch("/new_folder", {
+            "method": "POST",
+            "body": f,
+        }).then(response => response.text()).then(data => {
+            console.log("newFolder replied:", data);
+            location.reload();
+        });
+    }
+}
 
 document.querySelector("#new-task-button").addEventListener("click", newtask)
-// document.querySelector("#new-folder-button").addEventListener("click", newfolder)
+document.querySelector("#new-folder-button").addEventListener("click", newfolder)
