@@ -46,14 +46,11 @@ def db_write(sql, data=None):
     return rows_affected
 
 
-def create_app():
-    app = Flask(__name__)
-    app.config["SECRET_KEY"] = "asdf"
+app = Flask(__name__)
+app.config["SECRET_KEY"] = "asdf"
 
-    from .views import views
-    from .auth import auth
+from .views import views
+from .auth import auth
 
-    app.register_blueprint(views, url_prefix="/")
-    app.register_blueprint(auth, url_prefix="/account")
-
-    return app
+app.register_blueprint(views, url_prefix="/")
+app.register_blueprint(auth, url_prefix="/account")

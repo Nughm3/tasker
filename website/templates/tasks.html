@@ -22,7 +22,7 @@
             {% endfor %}
             <div class="controls">
                 <button class="red">Log out</button>
-                <button class="green">Settings</button>
+                <button class="green">Archive</button>
             </div>
         </div>
 
@@ -51,6 +51,7 @@
         </div>
 
         <div class="main">
+            {% if maintask %}
             <form method="POST" enctype="multipart/form-data" action="/save_task">
                 <div class="maintitle"><input type="text" name="title" value="{{ maintask.title }}" placeholder="Task title" class="tasktitle"></div>
                 <div class="two-columns">
@@ -91,6 +92,7 @@
                 <input type="button" name="button-share" class="gray" value=" ">
                 <input type="button" name="button-print" class="gray" value=" ">
             </form>
+            {% endif %}
         </div>
     </div>
     <script type="text/javascript" src="/static/main.js"></script>

@@ -32,7 +32,10 @@ def tasks():
     tasks = db_read(
         f"SELECT * FROM tasks WHERE folderid='{folderid}' AND status != 'Completed' ORDER BY title;"
     )
-    maintask = db_read(f"SELECT * FROM tasks WHERE id='{id}';")[0]
+    try:
+        maintask = db_read(f"SELECT * FROM tasks WHERE id='{id}';")[0]
+    except IndexError:
+        maintask = None
 
     folders = [{"id": folders.index(name), "name": name["name"]} for name in folders]
 
@@ -48,7 +51,7 @@ def tasks():
 
 @views.route("/error")
 def error():
-    return "<h1>There was an error</h1><a href='/tasks/'>Back to tasks page</a>"
+    return "<head><title>Error</title></head><body><h1>Sorry!</h1><p>There was an error</p><a href='/tasks/'>Back to tasks page</a></body>"
 
 
 @views.route("/save_task", methods=["POST"])
