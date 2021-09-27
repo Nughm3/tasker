@@ -47,7 +47,7 @@ def db_write(sql, data=None):
 
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "asdf"
+app.config["SECRET_KEY"] = "asdfghjkl;'"
 
 from .views import views
 from .auth import auth
