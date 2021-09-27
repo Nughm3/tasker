@@ -79,7 +79,7 @@ def save_task():
             form,
         )
 
-    if write == 1:
+    if write == 0:
         return redirect(f"/tasks/?folderid={folderid}&id={id}")
     else:
         return redirect("/error")
@@ -93,7 +93,7 @@ def new_folder():
     write = db_write(
         "INSERT INTO folders (userid, id, name) VALUES (:userid, :id, :name);", form
     )
-    if write == 1:
+    if write == 0:
         return "Ok"
     else:
         return "Err"
